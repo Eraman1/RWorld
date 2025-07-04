@@ -15,6 +15,9 @@ import {
     Heart,
     Award,
 } from "lucide-react"
+import { ShineBorder } from "./magicui/shine-border"
+import { useTheme } from "next-themes";
+import { MagicCard } from "./magicui/magic-card"
 
 const coreValues = [
     {
@@ -97,6 +100,7 @@ const teamHighlights = [
 ]
 
 export default function WhoAreWe() {
+    const { theme } = useTheme();
     return (
         <section className="py-20 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
             {/* Background Pattern */}
@@ -123,6 +127,7 @@ export default function WhoAreWe() {
                 {/* Mission Statement */}
                 <div className="mb-20 animate-fade-in-up animation-delay-200">
                     <Card className="bg-card/50 backdrop-blur-sm border-primary/20 shadow-lg">
+                        <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
                         <CardContent className="p-8 text-center">
                             <Rocket className="w-12 h-12 text-primary mx-auto mb-4" />
                             <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
@@ -148,6 +153,7 @@ export default function WhoAreWe() {
                                 key={index}
                                 className="group hover:shadow-lg transition-all duration-300 bg-card/70 backdrop-blur-sm border-primary/10 hover:border-primary/20"
                             >
+                                <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
                                 <CardContent className="p-6 text-center">
                                     <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <value.icon className={`w-8 h-8 ${value.color}`} />
@@ -173,6 +179,7 @@ export default function WhoAreWe() {
                                 key={index}
                                 className="group hover:shadow-xl transition-all duration-300 bg-card/70 backdrop-blur-sm border-primary/10 hover:border-primary/20"
                             >
+                                <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
                                 <CardContent className="p-8">
                                     <div className="flex items-start gap-4">
                                         <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -209,6 +216,7 @@ export default function WhoAreWe() {
                                 key={index}
                                 className="text-center group hover:shadow-lg transition-all duration-300 bg-card/70 backdrop-blur-sm border-primary/10 hover:border-primary/20"
                             >
+                                <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
                                 <CardContent className="p-6">
                                     <achievement.icon className="w-8 h-8 text-primary mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
                                     <div className="text-3xl font-bold text-foreground mb-2 font-mono">{achievement.number}</div>
@@ -244,7 +252,11 @@ export default function WhoAreWe() {
 
                 {/* Call to Action */}
                 <div className="text-center animate-fade-in-up animation-delay-1200">
-                    <Card className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border-primary/20 shadow-xl">
+                    <Card className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border-primary/20 shadow-none border-none">
+                        <MagicCard
+                            gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+                            className="p-0"
+                        />
                         <CardContent className="p-12">
                             <h3 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
                             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">

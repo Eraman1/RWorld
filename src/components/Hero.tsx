@@ -106,12 +106,25 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Code, Zap, Users } from "lucide-react"
 import { Globe } from "./magicui/globe"
+import { FlickeringGrid } from "./magicui/flickering-grid"
 
 export default function Hero() {
     return (
         <section className="w-full min-h-screen flex items-center justify-center overflow-hidden relative">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-30 dark:opacity-20"></div>
+            {/* Flickering Grid - Full Width & Responsive */}
+            <div className="absolute inset-0 z-0">
+                <FlickeringGrid
+                    className="w-full h-full relative z-0 [mask-image:radial-gradient(450px_circle_at_center,white,transparent)]"
+                    squareSize={4}
+                    gridGap={6}
+                    color="#60A5FA"
+                    maxOpacity={0.5}
+                    flickerChance={0.1}
+                    // Give large enough height; width handled by container
+                    height={1000}
+                    width={1920}
+                />
+            </div>
 
             {/* Floating Blobs */}
             <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-float opacity-60" />
@@ -119,12 +132,11 @@ export default function Hero() {
             <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-accent/40 rounded-full blur-xl animate-float opacity-60" />
 
             {/* Main Container */}
-            <div className="container mx-auto px-2 sm:px-4 lg:px-4 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
-
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-10">
                     {/* Content Section */}
-                    <div className="flex flex-col justify-center space-y-8 order-2 lg:order-1">
-                        {/* Headline and Tagline */}
+                    <div className="flex flex-col space-y-8 order-2 lg:order-1 items-center text-center lg:items-start lg:text-left">
+                        {/* Headline */}
                         <div className="animate-fade-in-up animation-delay-200">
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
                                 <span className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 dark:from-slate-200 dark:via-purple-400 dark:to-slate-200 text-transparent bg-clip-text">
@@ -137,11 +149,11 @@ export default function Hero() {
                         </div>
 
                         {/* Feature Icons */}
-                        <div className="flex justify-start gap-8 animate-fade-in-up animation-delay-400">
+                        <div className="flex justify-center lg:justify-start gap-8 animate-fade-in-up animation-delay-400">
                             {[
                                 { icon: Code, label: "Development" },
                                 { icon: Zap, label: "Innovation" },
-                                { icon: Users, label: "Partnership" }
+                                { icon: Users, label: "Partnership" },
                             ].map(({ icon: Icon, label }, idx) => (
                                 <div key={idx} className="flex flex-col items-center group">
                                     <div className="w-16 h-16 bg-card border rounded-full shadow-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 group-hover:shadow-xl">
@@ -153,7 +165,7 @@ export default function Hero() {
                         </div>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-start items-start animate-fade-in-up animation-delay-600">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center animate-fade-in-up animation-delay-600">
                             <Button
                                 size="lg"
                                 className="px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group"
@@ -172,11 +184,11 @@ export default function Hero() {
                     </div>
 
                     {/* Globe Section */}
-                    <div className="flex justify-center items-center relative h-[500px] lg:h-[600px] order-1 lg:order-2">
+                    <div className="flex justify-center items-center relative h-[500px] lg:h-[600px] opacity-60 order-1 lg:order-2">
                         <Globe className="w-full max-w-[500px] lg:max-w-[600px]" />
                     </div>
                 </div>
             </div>
         </section>
-    )
+    );
 }

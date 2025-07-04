@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
+import { ScrollProgress } from "./magicui/scroll-progress";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -19,6 +20,7 @@ const Navbar = () => {
 
     return (
         <header className="fixed top-0 left-0 z-50 w-full bg-background border-b shadow-sm">
+            <ScrollProgress className="top-[60px]" />
             <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Logo */}
                 <a href="/" className="text-2xl font-bold text-foreground">
