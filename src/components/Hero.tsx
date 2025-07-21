@@ -184,9 +184,9 @@ export default function Hero() {
                     </div>
 
                     {/* Globe Section */}
-                    <div className="flex justify-center items-center relative h-[500px] lg:h-[600px] opacity-60 order-1 lg:order-2">
+                    {/* <div className="flex justify-center items-center relative h-[500px] lg:h-[600px] opacity-60 order-1 lg:order-2">
                         <Globe className="w-full max-w-[500px] lg:max-w-[600px]" />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>
