@@ -112,7 +112,7 @@ export default function WhoAreWe() {
                         About r-world
                     </div>
                     <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                        <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+                        <span className="bg-amber-400 dark:bg-amber-500 bg-clip-text text-transparent">
                             Who Are We?
                         </span>
                     </h2>
@@ -250,7 +250,7 @@ export default function WhoAreWe() {
 
                 {/* Call to Action */}
                 <div className="text-center animate-fade-in-up animation-delay-1200">
-                    <Card className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border-primary/20 shadow-xl">
+                    <Card className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 dark:from-slate-200 dark:via-purple-400 dark:to-slate-200 text-transparent bg-clip-text  shadow-xl">
                         <CardContent className="p-12">
                             <h3 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
                             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
