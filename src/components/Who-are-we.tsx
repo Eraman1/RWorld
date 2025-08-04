@@ -107,10 +107,10 @@ export default function WhoAreWe() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-16 animate-fade-in-up">
-                    <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+                    {/* <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
                         <Code2 className="w-4 h-4" />
                         About r-world
-                    </div>
+                    </div> */}
                     <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
                         <span className="bg-amber-400 dark:bg-amber-500 bg-clip-text text-transparent">
                             Who Are We?

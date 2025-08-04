@@ -27,11 +27,13 @@ import {
     Headphones,
     Briefcase,
 } from "lucide-react"
+import axios from "axios"
 
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        phone: "",
         company: "",
         service: "",
         message: "",
@@ -40,21 +42,29 @@ export default function Contact() {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setIsSubmitting(true)
+        e.preventDefault();
+        setIsSubmitting(true);
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        try {
+            const response = await axios.post("http://localhost:5000/api/enquiry", {
+                ...formData,
+                path: window.location.pathname,
+            });
 
-        setIsSubmitting(false)
-        setIsSubmitted(true)
+            console.log("Enquiry submitted:", response.data);
 
-        // Reset form after 3 seconds
-        setTimeout(() => {
-            setIsSubmitted(false)
-            setFormData({ name: "", email: "", company: "", service: "", message: "" })
-        }, 3000)
-    }
+            setIsSubmitted(true);
+            setFormData({ name: "", email: "", phone: "", company: "", service: "", message: "" });
+
+            setTimeout(() => setIsSubmitted(false), 3000);
+        } catch (error) {
+            console.error("Submission failed:", error);
+            // Show error toast or alert if needed
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
 
     const handleInputChange = (field: string, value: string) => {
         setFormData((prev) => ({ ...prev, [field]: value }))
@@ -116,7 +126,7 @@ export default function Contact() {
         },
     ]
 
-  
+
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
@@ -190,7 +200,7 @@ export default function Contact() {
                                     </div>
                                 ) : (
                                     <form onSubmit={handleSubmit} className="space-y-6">
-                                        <div className="grid md:grid-cols-2 gap-4">
+                                        <div className="grid md:grid-cols-3 gap-4">
                                             <div className="space-y-2">
                                                 <Label htmlFor="name">Full Name *</Label>
                                                 <Input
@@ -198,9 +208,7 @@ export default function Contact() {
                                                     value={formData.name}
                                                     onChange={(e) => handleInputChange("name", e.target.value)}
                                                     placeholder="John Doe"
-                                                    required
-                                                    className="hover:border-primary/50 focus:border-primary transition-colors duration-300"
-                                                />
+                                                    required />
                                             </div>
                                             <div className="space-y-2">
                                                 <Label htmlFor="email">Email Address *</Label>
@@ -211,10 +219,21 @@ export default function Contact() {
                                                     onChange={(e) => handleInputChange("email", e.target.value)}
                                                     placeholder="john@example.com"
                                                     required
-                                                    className="hover:border-primary/50 focus:border-primary transition-colors duration-300"
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label htmlFor="phone">Phone Number *</Label>
+                                                <Input
+                                                    id="phone"
+                                                    type="tel"
+                                                    value={formData.phone}
+                                                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                                                    placeholder="+1 234 567 8901"
+                                                    required
                                                 />
                                             </div>
                                         </div>
+
 
                                         <div className="grid md:grid-cols-2 gap-4">
                                             <div className="space-y-2">
@@ -224,13 +243,13 @@ export default function Contact() {
                                                     value={formData.company}
                                                     onChange={(e) => handleInputChange("company", e.target.value)}
                                                     placeholder="Your Company"
-                                                    className="hover:border-primary/50 focus:border-primary transition-colors duration-300"
+                                                    className="hover:border-primary/50 focus:border-primary transition-colors duration-300 w-full"
                                                 />
                                             </div>
                                             <div className="space-y-2">
                                                 <Label htmlFor="service">Service Interested In</Label>
-                                                <Select  onValueChange={(value) => handleInputChange("service", value)} >
-                                                    <SelectTrigger className="hover:border-primary/50 focus:border-primary transition-colors duration-300">
+                                                <Select onValueChange={(value) => handleInputChange("service", value)} >
+                                                    <SelectTrigger className="w-full hover:border-primary/50 focus:border-primary transition-colors duration-300">
                                                         <SelectValue placeholder="Select a service" />
                                                     </SelectTrigger>
                                                     <SelectContent>
