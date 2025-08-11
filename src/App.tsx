@@ -9,11 +9,17 @@ import Contact from './pages/Contact'
 import BlogPage from './pages/Blog-page'
 import CareerPage from './pages/Career'
 import BlogDetailPage from './pages/Blog-detail-page'
+import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
+import { ToastContainer } from 'react-toastify'
+import PrivateRoute from './components/PrivateRoute'
+import NotFound from './pages/NotFound'
 
 
 function App() {
   return (
     <Router>
+      <ToastContainer />
       <Navbar />
 
       <main className="min-h-screen">
@@ -23,6 +29,16 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<BlogDetailPage />} />
           <Route path="/career" element={<CareerPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
