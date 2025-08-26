@@ -28,38 +28,49 @@ import {
     Briefcase,
 } from "lucide-react"
 import axios from "axios"
+import { toast } from "react-toastify"
+import { sendEnquiry, type Enquiry, type EnquiryFormData } from "@/api/enquiry"
 
 export default function Contact() {
-    const [formData, setFormData] = useState({
+    // Update the initial state to match the Enquiry interface
+    const [formData, setFormData] = useState<EnquiryFormData>({
         name: "",
         email: "",
         phone: "",
         company: "",
         service: "",
         message: "",
-    })
+        path: window.location.pathname,
+    });
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
 
         try {
-            const response = await axios.post("http://localhost:5000/api/enquiry", {
+            await sendEnquiry({
                 ...formData,
-                path: window.location.pathname,
+                // Add missing fields that the API expects
+              
             });
 
-            console.log("Enquiry submitted:", response.data);
-
             setIsSubmitted(true);
-            setFormData({ name: "", email: "", phone: "", company: "", service: "", message: "" });
-
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                company: "",
+                service: "",
+                message: "",
+                path: window.location.pathname,
+            });
             setTimeout(() => setIsSubmitted(false), 3000);
+
         } catch (error) {
             console.error("Submission failed:", error);
-            // Show error toast or alert if needed
+            toast.error("Submission failed. Please try again.");
         } finally {
             setIsSubmitting(false);
         }

@@ -14,6 +14,9 @@ import Login from './pages/Login'
 import { ToastContainer } from 'react-toastify'
 import PrivateRoute from './components/PrivateRoute'
 import NotFound from './pages/NotFound'
+import CreateBlog from './pages/CreateBlog'
+import MyEditor from './pages/Test'
+import Editor from './pages/Test'
 
 
 function App() {
@@ -27,14 +30,24 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/blog" element={<BlogDetailPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/career" element={<CareerPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/test' element={<Editor />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route
             path="/dashboard"
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/create-blog"
+            element={
+              <PrivateRoute>
+                <CreateBlog />
               </PrivateRoute>
             }
           />

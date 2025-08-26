@@ -1,5 +1,6 @@
 
 
+import RWorldBlog from '@/components/dashboard/RworldBlog';
 import RWorldEnquiryTable from '@/components/dashboard/RWorldEnquiry';
 import Sidebar from '@/components/dashboard/Sidebar';
 import StockitEnquiry from '@/components/dashboard/StockitEnquiry';
@@ -36,8 +37,9 @@ export default function Dashboard() {
 
                 {tab === 'dash' && <h2>Dashboard View</h2>}
                 {tab === 'rworld-enquiry' && <RWorldEnquiryTable />}
-                {tab === 'blog' && <h2>Blog View</h2>}
+                {tab === 'rworld-blog' && <RWorldBlog />}
                 {tab === 'enquiry' && <StockitEnquiry />}
+
             </div>
 
         </div>

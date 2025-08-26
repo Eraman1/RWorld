@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Calendar, Clock, User, Search, ArrowRight, Eye, Heart, MessageCircle } from "lucide-react"
+import LetestBlog from "@/components/blog/LetestBlog"
 
 export default function BlogPage() {
     const [searchTerm, setSearchTerm] = useState("")
@@ -227,7 +228,7 @@ export default function BlogPage() {
                 </div>
 
                 {/* Blog Posts Grid */}
-                <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-600">
+                {/* <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-600">
                     <div className="flex items-center justify-between mb-8">
                         <h2 className="text-2xl font-bold">Latest Articles</h2>
                         <p className="text-muted-foreground">{filteredPosts.length} articles found</p>
@@ -290,7 +291,7 @@ export default function BlogPage() {
                         ))}
                     </div>
 
-                    {/* Load More Button */}
+                    {/* Load More Button 
                     <div className="text-center mt-12">
                         <Button
                             size="lg"
@@ -301,7 +302,9 @@ export default function BlogPage() {
                             <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                         </Button>
                     </div>
-                </div>
+                </div> */}
+
+                <LetestBlog/>
             </div>
         </div>
     )

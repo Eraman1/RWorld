@@ -98,7 +98,7 @@ export default function RWorldEnquiry() {
         <div className="mt-8">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                    R-World Software Enquiries
+                    Stockit Enquiries
                 </h2>
                 <div className="flex gap-2">
                     <button

@@ -1,6 +1,5 @@
 import API from "./axios";
 
-// ✅ Define types locally
 interface LoginRequest {
   email: string;
   password: string;
@@ -14,8 +13,12 @@ interface LoginResponse {
   };
 }
 
-// ✅ Login API call with types
 export const loginUser = async (data: LoginRequest): Promise<LoginResponse> => {
   const response = await API.post<LoginResponse>("/auth/login", data);
+
+  // Save tokens after login
+  localStorage.setItem("accessToken", response.data.token.accessToken);
+  localStorage.setItem("refreshToken", response.data.token.refreshToken);
+
   return response.data;
 };

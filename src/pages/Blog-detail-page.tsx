@@ -17,6 +17,9 @@ import {
     BookOpen,
     Tag,
 } from "lucide-react"
+import { useLocation, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { getBlogById, getBlogBySlug } from "@/api/blog"
 
 export default function BlogDetailPage() {
     const blogPost = {
@@ -83,12 +86,42 @@ export default function BlogDetailPage() {
         },
     ]
 
+    const { slug } = useParams();
+    const location = useLocation();
+    const [blog, setBlog] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchBlog = async () => {
+            try {
+                if (location.state?.id) {
+                    // ✅ User navigated inside app
+                    const data = await getBlogById(location.state.id);
+                    setBlog(data);
+                } else if (slug) {
+                    // ✅ Direct page load → fetch by slug
+                    const data = await getBlogBySlug(slug);
+                    setBlog(data);
+                }
+            } catch (err) {
+                console.error("Error fetching blog:", err);
+                setBlog(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchBlog();
+    }, [location.state, slug]);
+
+    if (loading) return <p>Loading...</p>;
+    if (!blog) return <p>Blog not found</p>;
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+        <div className="min-h-screen mt-10 bg-gradient-to-br from-background via-background to-muted/20">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 {/* Back Button */}
                 <div className="mb-8 animate-in fade-in slide-in-from-left-4 duration-500">
-                    <Button variant="ghost" className="group hover:bg-muted transition-all duration-300">
+                    <Button variant="ghost" className="group hover:bg-muted cursor-pointer transition-all duration-300">
                         <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
                         Back to Blog
                     </Button>
@@ -97,18 +130,22 @@ export default function BlogDetailPage() {
                 {/* Article Header */}
                 <div className="mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
                     <div className="mb-6">
-                        <Badge className="mb-4">{blogPost.category}</Badge>
-                        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">{blogPost.title}</h1>
+                        <Badge className="mb-4">{blog.category}</Badge>
+                        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">{blog.title}</h1>
 
                         {/* Meta Information */}
                         <div className="flex flex-wrap items-center gap-6 text-muted-foreground mb-6">
                             <div className="flex items-center gap-2">
                                 <Calendar className="h-4 w-4" />
-                                <span>{blogPost.date}</span>
+                                <span>{new Date(blog.date).toLocaleDateString("en-In", {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric",
+                                })}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Clock className="h-4 w-4" />
-                                <span>{blogPost.readTime}</span>
+                                <span>{blog.readTime}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Eye className="h-4 w-4" />
@@ -123,13 +160,13 @@ export default function BlogDetailPage() {
                         {/* Author Info */}
                         <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50">
                             <img
-                                src={blogPost.author.avatar || "/placeholder.svg"}
-                                alt={blogPost.author.name}
+                                src={blog.author.avatar || "/placeholder.svg"}
+                                alt={blog.author.name}
                                 className="w-12 h-12 rounded-full object-cover"
                             />
                             <div>
-                                <h3 className="font-semibold">{blogPost.author.name}</h3>
-                                <p className="text-sm text-muted-foreground">{blogPost.author.bio}</p>
+                                <h3 className="font-semibold">{blog.author.name}</h3>
+                                <p className="text-sm text-muted-foreground">{blog.author.bio}</p>
                             </div>
                         </div>
                     </div>
@@ -137,8 +174,8 @@ export default function BlogDetailPage() {
                     {/* Featured Image */}
                     <div className="relative overflow-hidden rounded-lg mb-8">
                         <img
-                            src="https://t3.ftcdn.net/jpg/02/14/87/96/360_F_214879686_R3HFJlk6WLr1kcdvy6Q9rtNASKN0BZBS.jpg"
-                            alt={blogPost.title}
+                            src={blog.image}
+                            alt={blog.title}
                             className="w-full h-64 md:h-96 object-cover hover:scale-105 transition-transform duration-500"
                         />
                     </div>
@@ -150,7 +187,7 @@ export default function BlogDetailPage() {
                         <Card className="p-8 mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
                             <div
                                 className="prose prose-lg max-w-none dark:prose-invert"
-                                dangerouslySetInnerHTML={{ __html: blogPost.content }}
+                                dangerouslySetInnerHTML={{ __html: blog.content }}
                             />
                         </Card>
 
@@ -161,7 +198,7 @@ export default function BlogDetailPage() {
                                 <span className="font-semibold">Tags:</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
-                                {blogPost.tags.map((tag, index) => (
+                                {blog.tags.map((tag: string, index: number) => (
                                     <Badge
                                         key={index}
                                         variant="secondary"
@@ -236,45 +273,35 @@ export default function BlogDetailPage() {
                             <Card className="p-6 animate-in fade-in slide-in-from-right-8 duration-1000 delay-300">
                                 <h3 className="font-semibold mb-4">Table of Contents</h3>
                                 <nav className="space-y-2 text-sm">
-                                    <a
-                                        href="#ai-tools"
-                                        className="block text-muted-foreground hover:text-primary transition-colors duration-300"
-                                    >
-                                        1. AI-Powered Development Tools
-                                    </a>
-                                    <a
-                                        href="#pwa"
-                                        className="block text-muted-foreground hover:text-primary transition-colors duration-300"
-                                    >
-                                        2. Progressive Web Apps Evolution
-                                    </a>
-                                    <a
-                                        href="#webassembly"
-                                        className="block text-muted-foreground hover:text-primary transition-colors duration-300"
-                                    >
-                                        3. WebAssembly Adoption
-                                    </a>
-                                    <a
-                                        href="#serverless"
-                                        className="block text-muted-foreground hover:text-primary transition-colors duration-300"
-                                    >
-                                        4. Serverless Architecture
-                                    </a>
-                                    <a
-                                        href="#security"
-                                        className="block text-muted-foreground hover:text-primary transition-colors duration-300"
-                                    >
-                                        5. Enhanced Security Measures
-                                    </a>
+                                    {blog.tableOfContents?.length > 0 ? (
+                                        blog.tableOfContents.map((title: string, index: number) => {
+                                            const slug = title
+                                                .toLowerCase()
+                                                .replace(/[^a-z0-9\s]/g, "") // remove special chars
+                                                .replace(/\s+/g, "-");      // replace spaces with dashes
+
+                                            return (
+                                                <a
+                                                    key={index}
+                                                    href={`#${slug}`}
+                                                    className="block text-muted-foreground hover:text-primary transition-colors duration-300"
+                                                >
+                                                    {index + 1}. {title}
+                                                </a>
+                                            );
+                                        })
+                                    ) : (
+                                        <p className="text-muted-foreground">Loading sections...</p>
+                                    )}
                                 </nav>
                             </Card>
 
                             {/* Newsletter Signup */}
-                            <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 animate-in fade-in slide-in-from-right-8 duration-1000 delay-500">
+                            {/* <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 animate-in fade-in slide-in-from-right-8 duration-1000 delay-500">
                                 <h3 className="font-semibold mb-2">Stay Updated</h3>
                                 <p className="text-sm text-muted-foreground mb-4">Get the latest articles delivered to your inbox.</p>
                                 <Button className="w-full">Subscribe</Button>
-                            </Card>
+                            </Card> */}
                         </div>
                     </div>
                 </div>
