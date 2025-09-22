@@ -7,7 +7,7 @@ import React, {
   type JSX,
 } from "react";
 import { Plus, X, Save, Eye } from "lucide-react";
-import { createBlog, updateBlog } from "@/api/blog";
+import { createBlog, updateBlog } from "@/api/stockitBlog";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { toast } from "react-toastify";
@@ -36,8 +36,8 @@ interface BlogPostFormData {
   readTime: string;
   category: string;
   tags: string[];
-  tableOfContents: string[];
-  featured: boolean;
+  // tableOfContents: string[];
+  // featured: boolean;
 }
 
 const initialFormData: BlogPostFormData = {
@@ -55,11 +55,11 @@ const initialFormData: BlogPostFormData = {
   readTime: "",
   category: "",
   tags: [],
-  tableOfContents: [],
-  featured: false,
+  // tableOfContents: [],
+  // featured: false,
 };
 
-export default function CreateBlog({
+export default function CreateStockitBlog({
   blogData,
   isEdit = false,
   blogId,
@@ -163,25 +163,25 @@ export default function CreateBlog({
     }));
   };
 
-  const addTocItem = (): void => {
-    if (
-      currentToc.trim() &&
-      !formData.tableOfContents.includes(currentToc.trim())
-    ) {
-      setFormData((prev) => ({
-        ...prev,
-        tableOfContents: [...prev.tableOfContents, currentToc.trim()],
-      }));
-      setCurrentToc("");
-    }
-  };
+  // const addTocItem = (): void => {
+  //   if (
+  //     currentToc.trim() &&
+  //     !formData.tableOfContents.includes(currentToc.trim())
+  //   ) {
+  //     setFormData((prev) => ({
+  //       ...prev,
+  //       tableOfContents: [...prev.tableOfContents, currentToc.trim()],
+  //     }));
+  //     setCurrentToc("");
+  //   }
+  // };
 
-  const removeTocItem = (tocToRemove: string): void => {
-    setFormData((prev) => ({
-      ...prev,
-      tableOfContents: prev.tableOfContents.filter((toc) => toc !== tocToRemove),
-    }));
-  };
+  // const removeTocItem = (tocToRemove: string): void => {
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     tableOfContents: prev.tableOfContents.filter((toc) => toc !== tocToRemove),
+  //   }));
+  // };
 
   const generateSlug = (title: string): string => {
     return title
@@ -228,7 +228,7 @@ export default function CreateBlog({
         quillRef.current?.setText("");
       }
 
-      navigate(`/dashboard?tab=rworld-blog`);
+      navigate(`/dashboard?tab=blog`);
     } catch (err: any) {
       console.error(err);
       toast.error(err?.message || "Operation failed");
@@ -489,80 +489,11 @@ export default function CreateBlog({
             </div>
           </div>
 
-          {/* Table of Contents */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Table of Contents
-            </label>
-            <div className="flex gap-2 mb-2">
-              <input
-                type="text"
-                value={currentToc}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setCurrentToc(e.target.value)
-                }
-                onKeyPress={(e: KeyboardEvent<HTMLInputElement>) =>
-                  handleKeyPress(e, addTocItem)
-                }
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Add table of contents item"
-              />
-              <button
-                type="button"
-                onClick={addTocItem}
-                className="px-4 py-2 bg-blue-500 cursor-pointer text-white rounded-md hover:bg-blue-600 transition-colors"
-              >
-                <Plus className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="space-y-2">
-              {formData.tableOfContents.map((toc: string, index: number) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between px-3 py-2 bg-gray-100 rounded-md"
-                >
-                  <span className="text-sm text-gray-700">
-                    {index + 1}. {toc}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => removeTocItem(toc)}
-                    className="text-red-600 cursor-pointer hover:text-red-800"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
+
 
           {/* Submit Button */}
           <div className="flex justify-end items-center gap-4 pt-6 border-t">
-            {/* Featured Toggle */}
-            <div className="flex items-center gap-2">
-              <label htmlFor="featured" className="text-sm font-medium text-gray-300">
-                Featured:
-              </label>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="featured"
-                  name="featured"
-                  checked={formData.featured}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, featured: e.target.checked }))
-                  }
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 transition-colors"></div>
-                <div className="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform peer-checked:translate-x-5"></div>
-              </label>
 
-              {/* Debug: show current value */}
-              <span className="text-sm text-gray-400">
-                {formData.featured ? "true" : "false"}
-              </span>
-            </div>
 
 
             {/* Submit Button */}

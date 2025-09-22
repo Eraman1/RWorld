@@ -17,6 +17,9 @@ import NotFound from './pages/NotFound'
 import CreateBlog from './pages/CreateBlog'
 import MyEditor from './pages/Test'
 import Editor from './pages/Test'
+import CreateBlogWrapper from './pages/CreateBlogWrapper'
+import CreateStockitBlog from './pages/CreateStockitBlog'
+import CreateStockitBlogWrapper from './pages/CreateStockitBlogWrapper'
 
 
 function App() {
@@ -48,6 +51,30 @@ function App() {
             element={
               <PrivateRoute>
                 <CreateBlog />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/create-stockit-blog"
+            element={
+              <PrivateRoute>
+                <CreateStockitBlog />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/update-blog/:id"
+            element={
+              <PrivateRoute>
+                <CreateBlogWrapper />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/update-stockit-blog/:id"
+            element={
+              <PrivateRoute>
+                <CreateStockitBlogWrapper />
               </PrivateRoute>
             }
           />

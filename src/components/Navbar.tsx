@@ -25,9 +25,16 @@ const Navbar = () => {
             <ScrollProgress className="top-[60px]" />
             <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Logo */}
-                <a href="/" className="text-2xl font-bold text-foreground">
-                    R-World Software
+                {/* Logo */}
+                <a href="/" className="flex items-center gap-2 text-2xl font-bold text-foreground">
+                    {/* <img
+                        src="/Logo_Rworld.png"   // replace with your actual logo path
+                        alt="R-World Logo"
+                        className="h-12 w-12 object-contain"
+                    /> */}
+                    R World Software
                 </a>
+
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-6">

@@ -14,185 +14,264 @@ import {
     Zap,
     Heart,
     Award,
+    Star,
+    Sparkles,
+    Brain,
+    Coffee,
+    Clock,
+    Trophy,
+    Palette,
+    Database,
+    Smartphone,
+    Cloud,
+    Bot
 } from "lucide-react"
-import { ShineBorder } from "./magicui/shine-border"
 
 const coreValues = [
     {
-        icon: Lightbulb,
-        title: "Innovation",
-        description: "We embrace cutting-edge technologies and creative solutions to solve complex challenges.",
-        color: "text-yellow-500",
+        icon: Brain,
+        title: "Innovation Excellence",
+        description: "We push boundaries with cutting-edge AI, blockchain, and emerging technologies to create tomorrow's solutions today.",
+        color: "text-emerald-500",
+        gradient: "from-emerald-500/20 to-teal-500/20"
     },
     {
         icon: Shield,
-        title: "Reliability",
-        description: "Our commitment to quality and dependability ensures your projects are delivered on time.",
-        color: "text-green-500",
-    },
-    {
-        icon: Users,
-        title: "Collaboration",
-        description: "We work closely with our clients as partners, not just service providers.",
+        title: "Uncompromising Quality",
+        description: "Every pixel, every line of code is crafted with precision. We don't just deliver projects—we deliver masterpieces.",
         color: "text-blue-500",
+        gradient: "from-blue-500/20 to-cyan-500/20"
     },
     {
-        icon: Target,
-        title: "Excellence",
-        description: "We strive for perfection in every line of code and every project we deliver.",
+        icon: Heart,
+        title: "Human-Centered Design",
+        description: "Technology serves people, not the other way around. We create experiences that feel intuitive and delightful.",
+        color: "text-rose-500",
+        gradient: "from-rose-500/20 to-pink-500/20"
+    },
+    {
+        icon: Rocket,
+        title: "Lightning Fast Delivery",
+        description: "Time is precious. Our agile methodology and expert team ensure rapid delivery without compromising excellence.",
         color: "text-purple-500",
+        gradient: "from-purple-500/20 to-violet-500/20"
     },
 ]
 
 const services = [
     {
-        title: "Web Development",
-        description: "Modern, responsive websites and web applications",
-        technologies: ["React", "Next.js", "TypeScript", "Node.js"],
+        icon: Code2,
+        title: "Web Development Mastery",
+        description: "From stunning landing pages to complex enterprise applications, we craft web experiences that convert and captivate.",
+        technologies: ["React", "Next.js 14", "TypeScript", "Node.js", "TailwindCSS"],
+        color: "text-orange-500",
+        bgGradient: "from-orange-500/10 to-amber-500/10"
     },
     {
-        title: "Mobile Development",
-        description: "Native and cross-platform mobile applications",
-        technologies: ["React Native", "Flutter", "iOS", "Android"],
+        icon: Smartphone,
+        title: "Mobile App Innovation",
+        description: "Native iOS and Android apps, plus cross-platform solutions that feel native on every device.",
+        technologies: ["React Native", "Flutter", "SwiftUI", "Kotlin", "Firebase"],
+        color: "text-green-500",
+        bgGradient: "from-green-500/10 to-emerald-500/10"
     },
     {
-        title: "Cloud Solutions",
-        description: "Scalable cloud infrastructure and deployment",
-        technologies: ["AWS", "Azure", "Docker", "Kubernetes"],
+        icon: Cloud,
+        title: "Cloud Architecture",
+        description: "Scalable, secure, and cost-effective cloud solutions that grow with your business needs.",
+        technologies: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform"],
+        color: "text-sky-500",
+        bgGradient: "from-sky-500/10 to-blue-500/10"
     },
     {
-        title: "AI & ML",
-        description: "Intelligent solutions powered by machine learning",
-        technologies: ["Python", "TensorFlow", "OpenAI", "Data Science"],
+        icon: Bot,
+        title: "AI & Machine Learning",
+        description: "Intelligent automation, predictive analytics, and AI-powered features that give you a competitive edge.",
+        technologies: ["Python", "TensorFlow", "OpenAI GPT", "Computer Vision", "NLP"],
+        color: "text-violet-500",
+        bgGradient: "from-violet-500/10 to-purple-500/10"
+    },
+    {
+        icon: Palette,
+        title: "UI/UX Design Excellence",
+        description: "Beautiful interfaces that users love, backed by research and optimized for conversion.",
+        technologies: ["Figma", "Adobe Suite", "Framer", "Principle", "User Research"],
+        color: "text-pink-500",
+        bgGradient: "from-pink-500/10 to-rose-500/10"
+    },
+    {
+        icon: Database,
+        title: "Data & Analytics",
+        description: "Turn your data into actionable insights with custom dashboards and advanced analytics.",
+        technologies: ["PostgreSQL", "MongoDB", "Redis", "Elasticsearch", "Apache Spark"],
+        color: "text-indigo-500",
+        bgGradient: "from-indigo-500/10 to-purple-500/10"
     },
 ]
 
 const achievements = [
-    { number: "100+", label: "Projects Completed", icon: CheckCircle },
-    { number: "50+", label: "Happy Clients", icon: Heart },
-    { number: "5+", label: "Years Experience", icon: Award },
-    { number: "24/7", label: "Support Available", icon: Globe },
+    { number: "250+", label: "Projects Delivered", icon: Trophy, description: "Successful launches" },
+    { number: "98%", label: "Client Satisfaction", icon: Heart, description: "Happy partnerships" },
+    { number: "7+", label: "Years of Excellence", icon: Award, description: "Industry experience" },
+    { number: "24/7", label: "Global Support", icon: Globe, description: "Always available" },
 ]
 
 const teamHighlights = [
     {
-        role: "Full-Stack Developers",
-        count: "10+",
-        description: "Expert developers proficient in modern tech stacks",
+        role: "Senior Full-Stack Developers",
+        count: "15+",
+        description: "Master craftsmen in modern web technologies with 5+ years each",
+        icon: Code2,
+        color: "text-blue-500"
     },
     {
-        role: "UI/UX Designers",
-        count: "5+",
-        description: "Creative designers focused on user experience",
+        role: "UI/UX Design Experts",
+        count: "8+",
+        description: "Award-winning designers creating pixel-perfect experiences",
+        icon: Palette,
+        color: "text-pink-500"
     },
     {
-        role: "DevOps Engineers",
-        count: "3+",
-        description: "Infrastructure specialists ensuring scalability",
+        role: "DevOps & Cloud Architects",
+        count: "6+",
+        description: "Infrastructure wizards ensuring 99.9% uptime and scalability",
+        icon: Cloud,
+        color: "text-emerald-500"
     },
     {
-        role: "Project Managers",
+        role: "AI/ML Specialists",
         count: "4+",
-        description: "Experienced managers ensuring smooth delivery",
+        description: "Data scientists and AI engineers building the future",
+        icon: Brain,
+        color: "text-purple-500"
     },
 ]
 
+const companyStats = [
+    { label: "Coffee Cups", value: "10,000+", icon: Coffee },
+    { label: "Code Commits", value: "50,000+", icon: Code2 },
+    { label: "Design Iterations", value: "25,000+", icon: Palette },
+    { label: "Hours Coded", value: "100,000+", icon: Clock },
+]
+
 export default function WhoAreWe() {
-
     return (
-        <section className="py-20 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-30 dark:opacity-20"></div>
+        <section className="relative py-5 overflow-hidden bg-gradient-to-br from-background via-background to-muted/30">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-1/4 -left-4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/4 -right-4 w-96 h-96 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+            </div>
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Header */}
-                <div className="text-center mb-16 animate-fade-in-up">
-                    {/* <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
-                        <Code2 className="w-4 h-4" />
-                        About r-world
-                    </div> */}
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                        <span className="bg-amber-400 dark:bg-amber-500 bg-clip-text text-transparent">
-                            Who Are We?
-                        </span>
+            {/* Grid Pattern Overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black_70%,transparent_110%)] dark:bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)]"></div>
+
+            <div className="container mx-auto px-6 lg:px-8 relative z-10">
+                {/* Header Section */}
+                <div className="text-center mb-24 animate-fade-in-up">
+                    <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                        <Sparkles className="w-4 h-4" />
+                        Meet the R-World Team
+                        <Sparkles className="w-4 h-4" />
+                    </div>
+                    <h2 className="text-5xl sm:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        Who Are We?
                     </h2>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        We are a passionate team of technology enthusiasts dedicated to transforming your digital dreams into
-                        reality. With expertise spanning across modern web technologies, mobile development, and cloud solutions.
+                    <p className="text-xl sm:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
+                        We're not just another tech company. We're digital architects, innovation catalysts, and your partners in
+                        building the extraordinary. Every project is a canvas, every challenge an opportunity to create magic.
                     </p>
                 </div>
 
-                {/* Mission Statement */}
-                <div className="mb-20 animate-fade-in-up animation-delay-200">
-                    <Card className="bg-card/50 backdrop-blur-sm border-primary/20 shadow-lg">
-                        <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
-                        <CardContent className="p-8 text-center">
-                            <Rocket className="w-12 h-12 text-primary mx-auto mb-4" />
-                            <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                            <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-                                To empower businesses and individuals with innovative technology solutions that drive growth, enhance
-                                efficiency, and create meaningful digital experiences. We believe in the power of technology to
-                                transform ideas into impactful realities.
-                            </p>
+                {/* Mission & Vision Cards */}
+                <div className="grid md:grid-cols-2 gap-8 mb-24 animate-fade-in-up animation-delay-200">
+                    <Card className="group bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
+                        <CardContent className="p-10 text-center relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="relative z-10">
+                                <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                                    <Rocket className="w-8 h-8 text-primary" />
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4 text-primary">Our Mission</h3>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    To transform ambitious ideas into digital realities that not only meet expectations but exceed them.
+                                    We're here to make technology feel less like technology and more like magic.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="group bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
+                        <CardContent className="p-10 text-center relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="relative z-10">
+                                <div className="w-16 h-16 bg-blue-500/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                                    <Target className="w-8 h-8 text-blue-500" />
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4 text-blue-600">Our Vision</h3>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    To be the creative force behind the next generation of digital experiences, where innovation
+                                    meets intuition, and where every user interaction sparks joy and drives results.
+                                </p>
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
 
                 {/* Core Values */}
-                <div className="mb-20 animate-fade-in-up animation-delay-400">
-                    <div className="text-center mb-12">
-                        <h3 className="text-3xl font-bold mb-4">Our Core Values</h3>
-                        <p className="text-muted-foreground text-lg">The principles that guide everything we do</p>
+                <div className="mb-24 animate-fade-in-up animation-delay-400">
+                    <div className="text-center mb-16">
+                        <h3 className="text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Our DNA</h3>
+                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">The core values that drive every decision, every line of code, and every creative breakthrough</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {coreValues.map((value, index) => (
-                            <Card
-                                key={index}
-                                className="group hover:shadow-lg transition-all duration-300 bg-card/70 backdrop-blur-sm border-primary/10 hover:border-primary/20"
-                            >
-
-                                <CardContent className="p-6 text-center">
-                                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                                        <value.icon className={`w-8 h-8 ${value.color}`} />
+                            <Card key={index} className="group bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:rotate-1">
+                                <CardContent className="p-8 text-center relative overflow-hidden">
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                                    <div className="relative z-10">
+                                        <div className="w-16 h-16 bg-gradient-to-r from-background to-muted rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-500 shadow-lg">
+                                            <value.icon className={`w-8 h-8 ${value.color}`} />
+                                        </div>
+                                        <h4 className="text-xl font-bold mb-4">{value.title}</h4>
+                                        <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
                                     </div>
-                                    <h4 className="text-xl font-semibold mb-3">{value.title}</h4>
-                                    <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
                                 </CardContent>
                             </Card>
                         ))}
                     </div>
                 </div>
 
-                {/* Services Overview */}
-                <div className="mb-20 animate-fade-in-up animation-delay-600">
-                    <div className="text-center mb-12">
-                        <h3 className="text-3xl font-bold mb-4">What We Do</h3>
-                        <p className="text-muted-foreground text-lg">Comprehensive IT solutions tailored to your needs</p>
+                {/* Services Grid */}
+                <div className="mb-24 animate-fade-in-up animation-delay-600">
+                    <div className="text-center mb-16">
+                        <h3 className="text-4xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">What We Create</h3>
+                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">From concept to deployment, we handle every aspect of digital product development</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {services.map((service, index) => (
-                            <Card
-                                key={index}
-                                className="group hover:shadow-xl transition-all duration-300 bg-card/70 backdrop-blur-sm border-primary/10 hover:border-primary/20"
-                            >
-
-                                <CardContent className="p-8">
-                                    <div className="flex items-start gap-4">
-                                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                                            <Zap className="w-6 h-6 text-primary" />
-                                        </div>
-                                        <div className="flex-1">
-                                            <h4 className="text-xl font-semibold mb-3">{service.title}</h4>
-                                            <p className="text-muted-foreground mb-4">{service.description}</p>
-                                            <div className="flex flex-wrap gap-2">
-                                                {service.technologies.map((tech, techIndex) => (
-                                                    <Badge key={techIndex} variant="secondary" className="text-xs">
-                                                        {tech}
-                                                    </Badge>
-                                                ))}
+                            <Card key={index} className="group bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                                <CardContent className="p-8 relative overflow-hidden">
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${service.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                                    <div className="relative z-10">
+                                        <div className="flex items-start gap-4 mb-6">
+                                            <div className="w-12 h-12 bg-gradient-to-r from-background to-muted rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-all duration-500 shadow-lg">
+                                                <service.icon className={`w-6 h-6 ${service.color}`} />
                                             </div>
+                                            <div className="flex-1">
+                                                <h4 className="text-xl font-bold mb-3">{service.title}</h4>
+                                            </div>
+                                        </div>
+                                        <p className="text-muted-foreground mb-6 leading-relaxed">{service.description}</p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {service.technologies.map((tech, techIndex) => (
+                                                <Badge key={techIndex} variant="secondary" className="text-xs bg-background/80 hover:bg-background transition-colors duration-300">
+                                                    {tech}
+                                                </Badge>
+                                            ))}
                                         </div>
                                     </div>
                                 </CardContent>
@@ -202,77 +281,95 @@ export default function WhoAreWe() {
                 </div>
 
                 {/* Achievements */}
-                <div className="mb-20 animate-fade-in-up animation-delay-800">
-                    <div className="text-center mb-12">
-                        <h3 className="text-3xl font-bold mb-4">Our Achievements</h3>
-                        <p className="text-muted-foreground text-lg">Numbers that speak for our commitment</p>
+                <div className="mb-24 animate-fade-in-up animation-delay-800">
+                    <div className="text-center mb-16">
+                        <h3 className="text-4xl font-bold mb-6 bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">Proof of Excellence</h3>
+                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Numbers don't lie—here's what we've accomplished together</p>
                     </div>
 
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                         {achievements.map((achievement, index) => (
-                            <Card
-                                key={index}
-                                className="text-center group hover:shadow-lg transition-all duration-300 bg-card/70 backdrop-blur-sm border-primary/10 hover:border-primary/20"
-                            >
-
-                                <CardContent className="p-6">
-                                    <achievement.icon className="w-8 h-8 text-primary mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
-                                    <div className="text-3xl font-bold text-foreground mb-2 font-mono">{achievement.number}</div>
-                                    <div className="text-sm text-muted-foreground">{achievement.label}</div>
+                            <Card key={index} className="group text-center bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
+                                <CardContent className="p-8">
+                                    <achievement.icon className="w-12 h-12 text-primary mx-auto mb-4 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500" />
+                                    <div className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2 font-mono">
+                                        {achievement.number}
+                                    </div>
+                                    <div className="font-semibold text-foreground mb-1">{achievement.label}</div>
+                                    <div className="text-xs text-muted-foreground">{achievement.description}</div>
                                 </CardContent>
                             </Card>
                         ))}
                     </div>
                 </div>
 
-                {/* Team Highlights */}
-                <div className="mb-20 animate-fade-in-up animation-delay-1000">
-                    <div className="text-center mb-12">
-                        <h3 className="text-3xl font-bold mb-4">Our Team</h3>
-                        <p className="text-muted-foreground text-lg">Talented professionals driving innovation</p>
+                {/* Team */}
+                <div className="mb-24 animate-fade-in-up animation-delay-1000">
+                    <div className="text-center mb-16">
+                        <h3 className="text-4xl font-bold mb-6 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">Meet Our Superstars</h3>
+                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">The brilliant minds behind every successful project</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                         {teamHighlights.map((team, index) => (
-                            <Card
-                                key={index}
-                                className="text-center group hover:shadow-lg transition-all duration-300 bg-card/70 backdrop-blur-sm border-primary/10 hover:border-primary/20"
-                            >
-                                <CardContent className="p-6">
-                                    <div className="text-2xl font-bold text-primary mb-2 font-mono">{team.count}</div>
-                                    <h4 className="text-lg font-semibold mb-3">{team.role}</h4>
-                                    <p className="text-sm text-muted-foreground">{team.description}</p>
+                            <Card key={index} className="group text-center bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                                <CardContent className="p-8">
+                                    <div className="w-16 h-16 bg-gradient-to-r from-background to-muted rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-500 shadow-lg">
+                                        <team.icon className={`w-8 h-8 ${team.color}`} />
+                                    </div>
+                                    <div className="text-3xl font-bold text-primary mb-2 font-mono">{team.count}</div>
+                                    <h4 className="text-lg font-bold mb-3">{team.role}</h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">{team.description}</p>
                                 </CardContent>
                             </Card>
                         ))}
                     </div>
-                </div>
 
-                {/* Call to Action */}
-                <div className="text-center animate-fade-in-up animation-delay-1200">
-                    <Card className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 dark:from-slate-200 dark:via-purple-400 dark:to-slate-200 text-transparent bg-clip-text  shadow-xl">
+                    {/* Fun Stats */}
+                    <Card className="bg-gradient-to-r from-slate-900/90 via-purple-900/90 to-slate-900/90 dark:from-slate-100/10 dark:via-purple-100/10 dark:to-slate-100/10 backdrop-blur-xl border-0 shadow-2xl">
                         <CardContent className="p-12">
-                            <h3 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
-                            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                                Let's collaborate and bring your vision to life with our expertise and passion for technology.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button size="lg" className="px-8 py-4 text-lg font-semibold rounded-full group">
-                                    Get Started Today
-                                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    size="lg"
-                                    className="px-8 py-4 text-lg font-semibold rounded-full bg-transparent"
-                                >
-                                    View Our Portfolio
-                                </Button>
+                            <h4 className="text-2xl font-bold text-center mb-8 text-white dark:text-foreground">Behind the Scenes</h4>
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                                {companyStats.map((stat, index) => (
+                                    <div key={index} className="text-center group">
+                                        <stat.icon className="w-8 h-8 text-purple-300 dark:text-purple-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
+                                        <div className="text-2xl font-bold text-white dark:text-foreground mb-1 font-mono">{stat.value}</div>
+                                        <div className="text-sm text-purple-200 dark:text-muted-foreground">{stat.label}</div>
+                                    </div>
+                                ))}
                             </div>
                         </CardContent>
                     </Card>
                 </div>
+
+
             </div>
+
+            {/* Custom Animations */}
+            <style >{`
+                @keyframes fade-in-up {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                .animate-fade-in-up {
+                    animation: fade-in-up 0.8s ease-out forwards;
+                }
+                
+                .animation-delay-200 { animation-delay: 0.2s; }
+                .animation-delay-400 { animation-delay: 0.4s; }
+                .animation-delay-600 { animation-delay: 0.6s; }
+                .animation-delay-800 { animation-delay: 0.8s; }
+                .animation-delay-1000 { animation-delay: 1s; }
+                .animation-delay-1200 { animation-delay: 1.2s; }
+                .animation-delay-2000 { animation-delay: 2s; }
+            `}</style>
         </section>
     )
 }

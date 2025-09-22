@@ -1,7 +1,6 @@
-import API from "./axios"; // 👈 Your pre-configured Axios instance
+import API from "./axios";
 
-// TypeScript interface for a single enquiry
-// Form data interface (what you collect from the user)
+// Type for a single enquiry
 export interface EnquiryFormData {
   name: string;
   email: string;
@@ -12,18 +11,31 @@ export interface EnquiryFormData {
   path?: string;
 }
 
-// API response interface (what the server returns)
 export interface Enquiry extends EnquiryFormData {
   _id: string;
   timeStamp: string;
 }
 
-// Function to fetch all enquiries with Authorization
-export const getAllEnquiry = async (): Promise<Enquiry[]> => {
-  const response = await API.get<Enquiry[]>("/enquiry");
+// 👇 New type for paginated response
+export interface PaginatedEnquiries {
+  enquiries: Enquiry[];
+  total: number;
+  page: number;
+  pages: number;
+}
+
+// Fetch paginated enquiries
+export const getAllEnquiry = async (
+  page: number = 1,
+  limit: number = 20
+): Promise<PaginatedEnquiries> => {
+  const response = await API.get<PaginatedEnquiries>(
+    `/enquiry?page=${page}&limit=${limit}`
+  );
   return response.data;
 };
 
+// Send enquiry
 export const sendEnquiry = async (data: EnquiryFormData): Promise<Enquiry> => {
   const response = await API.post<Enquiry>("/enquiry", data);
   return response.data;

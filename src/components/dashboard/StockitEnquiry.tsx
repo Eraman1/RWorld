@@ -37,10 +37,10 @@ export default function RWorldEnquiry() {
     const filteredEnquiries = useMemo(() => {
         return enquiries.filter(enquiry => {
             const matchesSearch = searchTerm === "" ||
-                enquiry.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                enquiry.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                enquiry.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                enquiry.message.toLowerCase().includes(searchTerm.toLowerCase());
+                enquiry.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                enquiry.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                enquiry.company?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                enquiry.message?.toLowerCase().includes(searchTerm.toLowerCase());
 
             const matchesService = serviceFilter === "" || enquiry.service === serviceFilter;
 
@@ -210,7 +210,7 @@ export default function RWorldEnquiry() {
                     <table className="min-w-full text-sm">
                         <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                             <tr>
-                                {["Name", "Email", "Phone", "Company", "Service", "Message", "Date"].map(header => (
+                                {["Name", "Email", "Phone", "Message", "Date"].map(header => (
                                     <th
                                         key={header}
                                         className="text-left px-4 py-3 font-medium text-gray-900 dark:text-gray-100"
@@ -238,12 +238,12 @@ export default function RWorldEnquiry() {
                                         <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">{enquiry.name}</td>
                                         <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{enquiry.email}</td>
                                         <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{enquiry.phone}</td>
-                                        <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{enquiry.company}</td>
+                                        {/* <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{enquiry.company}</td>
                                         <td className="px-4 py-3">
                                             <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-medium">
                                                 {enquiry.service}
                                             </span>
-                                        </td>
+                                        </td> */}
                                         <td
                                             className="px-4 py-3 text-gray-700 dark:text-gray-300 max-w-xs truncate"
                                             title={enquiry.message}

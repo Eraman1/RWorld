@@ -3,6 +3,7 @@
 import RWorldBlog from '@/components/dashboard/RworldBlog';
 import RWorldEnquiryTable from '@/components/dashboard/RWorldEnquiry';
 import Sidebar from '@/components/dashboard/Sidebar';
+import StockitBlog from '@/components/dashboard/StockitBlog';
 import StockitEnquiry from '@/components/dashboard/StockitEnquiry';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -39,6 +40,7 @@ export default function Dashboard() {
                 {tab === 'rworld-enquiry' && <RWorldEnquiryTable />}
                 {tab === 'rworld-blog' && <RWorldBlog />}
                 {tab === 'enquiry' && <StockitEnquiry />}
+                {tab === 'blog' && <StockitBlog />}
 
             </div>
 

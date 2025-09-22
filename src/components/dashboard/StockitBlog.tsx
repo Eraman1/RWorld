@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Search, Download, Filter, X } from "lucide-react";
-import { getAllBlogs, deleteBlog, type BlogPostFormData } from "@/api/blog";
+import { getAllBlogs, deleteBlog, type BlogPostFormData } from "@/api/stockitBlog";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 
-export default function RWorldBlog() {
+export default function StockitBlog() {
     const [blogs, setBlogs] = useState<BlogPostFormData[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -94,7 +94,7 @@ export default function RWorldBlog() {
         <div className="mt-8">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                    R-World Software Blogs
+                    Stock It Blogs
                 </h2>
 
             </div>
@@ -168,7 +168,7 @@ export default function RWorldBlog() {
                                             </span>
                                         </td>
                                         <td className="px-4 py-3 text-blue-600 dark:text-blue-400 cursor-pointer hover:underline"
-                                            onClick={() => navigate(`/update-blog/${blog._id}`)}>
+                                            onClick={() => navigate(`/update-stockit-blog/${blog._id}`)}>
                                             Edit
                                         </td>
                                         <td

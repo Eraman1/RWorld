@@ -6,27 +6,53 @@ export default function RWorldEnquiry() {
     const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [total, setTotal] = useState(0);
+    const [loadingMore, setLoadingMore] = useState(false);
+
+
 
     // Filter states
     const [searchTerm, setSearchTerm] = useState("");
     const [serviceFilter, setServiceFilter] = useState("");
     const [dateFilter, setDateFilter] = useState("");
     const [showFilters, setShowFilters] = useState(false);
+    const [page, setPage] = useState(1);
+    const [limit] = useState(20); // fixed per page
+    const [totalPages, setTotalPages] = useState(1);
+
+
+
+    const fetchEnquiries = async (pageNumber: number) => {
+        try {
+            const data = await getAllEnquiry(pageNumber, limit);
+            if (pageNumber === 1) {
+                setEnquiries(data.enquiries); // fresh load
+            } else {
+                setEnquiries((prev) => [...prev, ...data.enquiries]); // append for "Load More"
+            }
+            setTotal(data.total);
+            setTotalPages(data.pages);
+            setPage(pageNumber);
+        } catch (err: any) {
+            setError(err.message || "Error fetching enquiries");
+        } finally {
+            setLoading(false);
+        }
+    };
+
 
     useEffect(() => {
-        const fetchEnquiries = async () => {
-            try {
-                const data = await getAllEnquiry();
-                setEnquiries(data);
-            } catch (err: any) {
-                setError(err.message || "Error fetching enquiries");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchEnquiries();
+        fetchEnquiries(1);
     }, []);
+
+    const loadMore = async () => {
+        if (page < totalPages) {
+            setLoadingMore(true);
+            await fetchEnquiries(page + 1);
+            setLoadingMore(false);
+        }
+    };
+
 
     // Get unique services for filter dropdown
     const uniqueServices = useMemo(() => {
@@ -36,20 +62,23 @@ export default function RWorldEnquiry() {
     // Filter enquiries based on search term, service, and date
     const filteredEnquiries = useMemo(() => {
         return enquiries.filter(enquiry => {
-            const matchesSearch = searchTerm === "" ||
-                enquiry.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                enquiry.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                enquiry.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                enquiry.message.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesSearch =
+                searchTerm === "" ||
+                (enquiry.name?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+                (enquiry.email?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+                (enquiry.company?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+                (enquiry.message?.toLowerCase() || "").includes(searchTerm.toLowerCase());
 
             const matchesService = serviceFilter === "" || enquiry.service === serviceFilter;
 
-            const matchesDate = dateFilter === "" ||
-                new Date(enquiry.timeStamp).toISOString().split('T')[0] === dateFilter;
+            const matchesDate =
+                dateFilter === "" ||
+                new Date(enquiry.timeStamp).toISOString().split("T")[0] === dateFilter;
 
             return matchesSearch && matchesService && matchesDate;
         });
     }, [enquiries, searchTerm, serviceFilter, dateFilter]);
+
 
     // Download function
     const downloadCSV = () => {
@@ -188,7 +217,7 @@ export default function RWorldEnquiry() {
 
             {/* Results Summary */}
             <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                Showing {filteredEnquiries.length} of {enquiries.length} enquiries
+                Showing {enquiries.length} of {total} enquiries
                 {hasActiveFilters && (
                     <span className="ml-2 px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs">
                         Filtered
@@ -267,6 +296,46 @@ export default function RWorldEnquiry() {
                     </table>
                 </div>
             )}
+            {page < totalPages && (
+                <div className="flex justify-center mt-4">
+                    <button
+                        onClick={loadMore}
+                        disabled={loadingMore}
+                        className="px-4 py-2 bg-blue-600 cursor-pointer text-white rounded-lg shadow hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                    >
+                        {loadingMore ? (
+                            <>
+                                <svg
+                                    className="animate-spin h-5 w-5 mr-2 text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        className="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        strokeWidth="4"
+                                    ></circle>
+                                    <path
+                                        className="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8v4l3-3-3-3v4a12 12 0 00-12 12h4z"
+                                    ></path>
+                                </svg>
+                                Loading...
+                            </>
+                        ) : (
+                            "Load More"
+                        )}
+                    </button>
+                </div>
+            )}
+
+
+
         </div>
     );
 
