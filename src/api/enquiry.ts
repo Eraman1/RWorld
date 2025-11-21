@@ -7,6 +7,8 @@ export interface EnquiryFormData {
   phone: string;
   company: string;
   service: string;
+  callDate?:String
+  callTime?:String
   message: string;
   path?: string;
 }

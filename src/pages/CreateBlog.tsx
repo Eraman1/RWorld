@@ -11,12 +11,12 @@ import { createBlog, updateBlog } from "@/api/blog";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { toast } from "react-toastify";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 interface CreateBlogProps {
   blogData?: BlogPostFormData; // existing blog data if editing
-  isEdit?: boolean;             // true if editing
-  blogId?: string;              // id of the blog to update
+  isEdit?: boolean; // true if editing
+  blogId?: string; // id of the blog to update
 }
 
 interface Author {
@@ -72,7 +72,6 @@ export default function CreateBlog({
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-
   // --- Quill setup ---
   const editorRef = useRef<HTMLDivElement>(null);
   const quillRef = useRef<Quill | null>(null);
@@ -124,12 +123,10 @@ export default function CreateBlog({
   }, [blogData]);
   // --- end Quill setup ---
 
-
   const formatDateForInput = (isoDate: string): string => {
     if (!isoDate) return "";
     return isoDate.split("T")[0]; // just take YYYY-MM-DD part
   };
-
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -179,7 +176,9 @@ export default function CreateBlog({
   const removeTocItem = (tocToRemove: string): void => {
     setFormData((prev) => ({
       ...prev,
-      tableOfContents: prev.tableOfContents.filter((toc) => toc !== tocToRemove),
+      tableOfContents: prev.tableOfContents.filter(
+        (toc) => toc !== tocToRemove
+      ),
     }));
   };
 
@@ -215,7 +214,7 @@ export default function CreateBlog({
 
       const blogToSubmit = {
         ...formData,
-        date: new Date(formData.date).toISOString()
+        date: new Date(formData.date).toISOString(),
       };
 
       if (isEdit && blogId) {
@@ -256,10 +255,20 @@ export default function CreateBlog({
     <div className="max-w-4xl my-12 mx-auto p-6  min-h-screen">
       <div className=" rounded-lg shadow-md p-8 bg-white dark:bg-gray-800">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
-            {isEdit ? "Edit Blog Post" : "Create New Blog Post"}
+          <div className="flex items-center gap-4">
+            {/* Back Button */}
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+            >
+              ← Back
+            </button>
 
-          </h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
+              {isEdit ? "Edit rworld Blog Post" : "Create rworld New Blog Post"}
+            </h1>
+          </div>
           <div className="flex gap-3">
             <button
               type="button"
@@ -540,7 +549,10 @@ export default function CreateBlog({
           <div className="flex justify-end items-center gap-4 pt-6 border-t">
             {/* Featured Toggle */}
             <div className="flex items-center gap-2">
-              <label htmlFor="featured" className="text-sm font-medium text-gray-300">
+              <label
+                htmlFor="featured"
+                className="text-sm font-medium text-gray-300"
+              >
                 Featured:
               </label>
               <label className="relative inline-flex items-center cursor-pointer">
@@ -550,7 +562,10 @@ export default function CreateBlog({
                   name="featured"
                   checked={formData.featured}
                   onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, featured: e.target.checked }))
+                    setFormData((prev) => ({
+                      ...prev,
+                      featured: e.target.checked,
+                    }))
                   }
                   className="sr-only peer"
                 />
@@ -564,16 +579,16 @@ export default function CreateBlog({
               </span>
             </div>
 
-
             {/* Submit Button */}
             <button
               type="button"
               onClick={handleSubmit}
               disabled={loading}
-              className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium cursor-pointer transition-colors ${loading
-                ? "bg-blue-400 text-white cursor-not-allowed"
-                : "bg-blue-600 text-white hover:bg-blue-700"
-                }`}
+              className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium cursor-pointer transition-colors ${
+                loading
+                  ? "bg-blue-400 text-white cursor-not-allowed"
+                  : "bg-blue-600 text-white hover:bg-blue-700"
+              }`}
             >
               {loading ? (
                 <>
@@ -598,7 +613,6 @@ export default function CreateBlog({
                     ></path>
                   </svg>
                   {isEdit ? "Updating..." : "Creating..."}
-
                 </>
               ) : (
                 <>
@@ -607,10 +621,36 @@ export default function CreateBlog({
                 </>
               )}
             </button>
-
           </div>
-
         </div>
+      </div>
+      <div className="border border-gray-300 dark:border-gray-700 rounded-lg p-5 mb-6">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
+          Step 1: Upload Blog Image
+        </h3>
+
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Pehle{" "}
+          <span className="font-medium">
+            https://stockit.rworldsoftware.in/
+          </span>{" "}
+          ke
+          <span className="font-semibold"> image </span> folder ke andar
+          <span className="font-semibold"> “rworldBlog” </span> naam ka folder
+          hoga. Waha apni blog ki image upload karo.
+        </p>
+
+        <p className="text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
+          Upload hone ke baad, image ka URL kuch aisa hoga:
+          <br />
+          <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">
+            https://stockit.rworldsoftware.in/image/rworldBlog/imageNameWithExtension
+          </span>
+        </p>
+
+        <p className="text-gray-700 dark:text-gray-300 mt-3">
+          Ab is image URL ko yaha paste kar do jaha bhi image URL ki zarurat ho.
+        </p>
       </div>
     </div>
   );
